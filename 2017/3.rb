@@ -6,8 +6,7 @@ end
 
 # figure out which ring you're on, noticing the bottom right
 # numbers are odd squares.
-# 1000 is a big enough number to exceed input
-ring = (0..1000).detect{|i| odd_square(i) >= data }
+ring = (Math.sqrt(data).ceil / 2 )
 
 # the minimum numbers on the ring where it's `ring` distance to origin
 mins = [1, 3, 5, 7].map{|i| odd_square(ring) - (ring*i) }
