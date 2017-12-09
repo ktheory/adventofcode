@@ -8,6 +8,7 @@ class Parser
     @level = 0
     @skip = false
     @in_garbage = false
+    @canceled_characters = 0
   end
 
   def parse!
@@ -15,6 +16,10 @@ class Parser
       if skip?
         end_skip!
         next
+      end
+
+      if in_garbage? && c != '!' && c != '>'
+        @canceled_characters += 1
       end
 
       case c
@@ -34,7 +39,7 @@ class Parser
       end
     end
 
-    @score
+    [@score, @canceled_characters]
   end
 
   def skip?; @skip; end
