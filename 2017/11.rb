@@ -6,7 +6,7 @@ def dir(idx)
   MOVES[idx % MOVES.size]
 end
 
-result = data.reduce(Hash.new(0)) do |acc, move|
+result = data.reduce([0, Hash.new(0)]) do |(max, acc), move|
   i = MOVES.index(move)
   if acc[dir(i + 3)] > 0
     acc[dir(i + 3)] -= 1
@@ -19,8 +19,8 @@ result = data.reduce(Hash.new(0)) do |acc, move|
   else
     acc[dir(i)] += 1
   end
-  acc
+  [[max, acc.values.sum].max, acc]
 end
 
-puts result.values.sum
-
+puts "Part 1: #{result.last.values.sum}"
+puts "Part 2: #{result.first}"
