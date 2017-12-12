@@ -35,7 +35,7 @@ end
 result = reducer(init, part1_data)
 puts result.list[0,2].reduce(1) {|acc, i| acc * i}
 
-part2_data = data.each_byte.reduce([]) {|acc, b| acc << b} + [17, 31, 73, 47, 23]
+part2_data = data.chomp.bytes + [17, 31, 73, 47, 23]
 
 result = 64.times.reduce(init) {|state, i| reducer(state, part2_data) }
 result = 16.times.reduce("") do |str, i|
