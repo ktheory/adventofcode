@@ -5,10 +5,10 @@ data = File.read("2.txt").split(",").map(&:to_i)
 # data = []
 
 # puts data.inspect
-
+computer = -> (noun, verb, data) {
 # 🙄
-data[1] = 12
-data[2] = 2
+data[1] = noun
+data[2] = verb
 
 i = 0
 while i < data.length do
@@ -22,7 +22,16 @@ while i < data.length do
   i += 4
 end
 
-puts data.inspect
+data[0]
+}
+
+# puts data.inspect
 
 # 520625 is too low
-puts data[0]
+# 3760627 = correct
+puts computer.call(12, 2, data.dup)
+
+# Part 2
+noun, verb = (0..99).to_a.repeated_permutation(2).detect{|(n,v)| computer.call(n, v, data.dup) == 19690720}
+
+puts(100 * noun + verb)
