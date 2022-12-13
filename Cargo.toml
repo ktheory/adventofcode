@@ -10,3 +10,7 @@ edition = "2021"
 [[bin]]
 name = "2"
 path = "2022/2.rs"
+
+[[bin]]
+name = "3"
+path = "2022/3.rs"
